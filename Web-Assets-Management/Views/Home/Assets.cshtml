@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Assets";
+}
+
+<div class="center-div">
+    <div class="form-action">
+        <form asp-action="Assets" asp-controller="Home" method="post">
+            <br />
+            <input type="number" placeholder="Assets Number" />
+            <br />
+            <input type="text" placeholder="Assets Name" />
+            <br />
+            <input type="number" placeholder="Quantity" />
+            <br />
+            <input type="number" placeholder="Price" />
+            <br />
+            <select>
+                <option value="" disabled selected hidden>Categories</option>
+                <option value="value">text</option>
+                <option value="value">text</option>
+                <option value="value">text</option>
+            </select>
+            <br />
+            <button>Add</button>
+            <button>Delete</button>
+            <button>Update</button>
+        </form>
+    </div>
+</div>
+
+
+<hr />
+
+<div class="center-div">
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                    <th>Header 3</th>
+                    <th>Header 4</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Content 1</td>
+                    <td>Content 1</td>
+                    <td>Content 1</td>
+                    <td>Content 1</td>
+
+                </tr>
+                <tr>
+                    <td>Content 2</td>
+                    <td>Content 2</td>
+                    <td>Content 2</td>
+                    <td>Content 2</td>
+
+                </tr>
+            <tbody>
+        </table>
+    </div>
+</div>
+
+

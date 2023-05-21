@@ -49,7 +49,8 @@ namespace Web_Assets_Management
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
