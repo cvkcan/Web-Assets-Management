@@ -1,5 +1,26 @@
 ﻿<style>
 
+/* Privacy Policy Page*/
+
+article {
+  width: 70%;
+  border: 1px solid black;
+  background-color: #cccccc;
+  padding: 15px;
+  margin: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 22px
+}
+
+p {
+  font-size: 20px;
+  line-height: 30px;
+  text-align: left;
+}
+
+    /*      ---      */
+
 * {
     box-sizing: border-box;
 }
@@ -50,15 +71,15 @@ body {
 
 /* Footer Area */
 
-    .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: bisque;
-        color: black;
-        text-align: center;
-    }
+ .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: bisque;
+    color: black;
+    text-align: center;
+}
 
 .footer p {
     float: left;
@@ -186,7 +207,24 @@ body {
         display: block;
         text-align: center;
     }
+
 }
+    .fl-table tbody tr button {
+        position: relative;
+        border-radius: 15px 15px 15px 15px;
+        width: 100px;
+        height: 25px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: #324960;
+        color: red;
+        transition: background-color 0.3s ease;
+    }
+
+        .fl-table tbody tr button:hover {
+            background-color: bisque;
+        }
 
 /* List Database */
 
@@ -282,7 +320,7 @@ hr {
 .form-action h1 {
     margin: 0 0 10px;
     padding:0;
-    color: #fff;
+    color: bisque;
     font-size:24px;
 }
 
@@ -309,21 +347,223 @@ hr {
     margin: 3px;
 }
 
-    .form-action button {
-        position: relative;
-        border-radius: 25px 25px 25px 25px;
-        width: 150px;
-        height: 50px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        background-color: #324960;
-        color:red;
-        transition: background-color 0.3s ease;
-    }
+.form-action label.checkbox-label {
+    display: block;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.form-action input[type="checkbox"] {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.form-action input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.form-action input[type="checkbox"]:checked::before {
+    background-color: bisque;
+}
+
+.form-action input[type="checkbox"]:checked::after {
+    content: "\2713";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #000;
+}
+
+
+.form-action button {
+    position: relative;
+    border-radius: 25px 25px 25px 25px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #324960;
+    color:red;
+    transition: background-color 0.3s ease;
+}
 
 .form-action button:hover {
     background-color:bisque;
+}
+
+.popup-container {
+    display: inline-flex;
+}
+
+.button {
+    position: relative;
+    border-radius: 15px;
+    width: 100px;
+    height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #324960;
+    color: red;
+    transition: background-color 0.3s ease;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: 400ms all;
+}
+
+.popup > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.popup .inner {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    min-width: 300px;
+    box-sizing: border-box;
+    transition: 400ms all;
+    z-index: 10;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.popup .inner .title {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    position: sticky;
+    top: 0;
+    background: #fff;
+}
+
+.popup .inner .title h4 {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.popup .inner .title label {
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+}
+
+.popup .inner .title label:hover {
+    color: #222;
+}
+
+.popup .inner .content {
+    padding: 5px 15px 15px;
+}
+
+.popup .inner .content input,
+.popup .inner .content select {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    font-size: 12px;
+}
+
+.popup .inner .content input:focus,
+.popup .inner .content select:focus {
+    outline: 0;
+    border-color: blue;
+}
+
+.popup .inner .content button {
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    background: blue;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.popup .inner .content button:hover {
+    background-color: bisque;
+}
+
+.popup .inner p {
+    font-size: 13px;
+    line-height: 130%;
+    margin-bottom: 15px;
+}
+
+.popup .inner p:last-child {
+    margin-bottom: 0;
+}
+
+.popup .inner .close-btn {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.popup .inner .close-btn label {
+    background: rgba(0, 0, 0, 0.05);
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.popup .inner .close-btn label:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.popup-container > input {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+}
+
+.popup-container > input:checked + .popup {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-container > input:checked + .popup .inner {
+    top: 50%;
 }
 
 

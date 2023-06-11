@@ -1,9 +1,28 @@
-﻿<div class="header">
-    <a href="#default" class="logo">Assets</a>
-    <div class="header-right">
-        <a href="/home/index">Home</a>
-        <a href="/home/assets">Assets</a>
-        <a href="/home/categories">Categories</a>
-        <a href="/home/stock">Stock</a>
+﻿@{
+    var auth = Context.Session.GetString("Auth");
+}
+@if (auth.Equals("madmin"))
+{
+    <div class="header">
+        <a asp-action="index" asp-controller="home" class="logo">Homepage</a>
+        <div class="header-right">
+            <a asp-action="assets" asp-controller="home">Assets</a>
+            <a asp-action="categories" asp-controller="home">Categories</a>
+            <a asp-action="stock" asp-controller="home">Stock</a>
+            <a asp-action="Downloads" asp-controller="Exports">Downloads</a>
+            <a onclick="LogOutAlert()">Log Out</a>
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="header">
+        <a asp-action="index" asp-controller="home" class="logo">Homepage</a>
+        <div class="header-right">
+            <a asp-action="Downloads" asp-controller="Exports">Download</a>
+            <a asp-action="Categories" asp-controller="Home">Categories</a>
+            <a asp-action="Stock" asp-controller="Home">Stock</a>
+            <a onclick="LogOutAlert()">Log Out</a>
+        </div>
+    </div>
+}

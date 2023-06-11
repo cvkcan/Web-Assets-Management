@@ -1,0 +1,33 @@
+﻿@model LoginVM
+
+<partial name="~/Views/Home/Partial/_ValidationPartial.cshtml">
+
+@{ 
+    Layout = null;
+}
+
+   <partial name="~/Views/Home/Partial/_ScriptsPartial.cshtml">
+       <partial name="~/Views/Home/Partial/_StylesPartial.cshtml">
+           <body style="background-image: url('/images/LoginWallpaper.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+               <div class="box">
+                   <div class="form-action">
+                       <h1>Login Page</h1><br />
+                       <form asp-action="login" asp-controller="access" method="post">
+                           <input type="text" asp-for="EId" placeholder="ID" onkeypress="return eventIsNumber(event)" />
+                           <span style="color:white;"asp-validation-for="EId"></span>
+                           <br />
+                           <input type="password" id="myInput" asp-for="Password" placeholder="Password" />
+                           <span style="color:white;" asp-validation-for="Password"></span>
+                           <br /><br />
+                           <label class="checkbox-label" style="color:bisque">
+                               <input type="checkbox"  onclick="myFunction()">
+                               Show Password
+                           </label>
+                           <br />
+                           <button type="submit">Login</button>
+                           <br /><br />
+                           <label class="checkbox-label" style="color:bisque"> @ViewData["ValidateMessage"]</label>
+                       </form>
+                   </div>
+               </div>
+           </body>

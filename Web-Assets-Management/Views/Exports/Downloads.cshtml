@@ -1,0 +1,34 @@
+﻿<html>
+<head>
+    <style>
+        #example {
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Downloads</title>
+</head>
+<body>
+    <div id="example">
+        <h2>HTML Download Link</h2>
+        <p style="text-align:center;">Click a link to download the file!</p>
+        <a asp-action="ExportAssetsExcel" asp-controller="Exports" download>
+            Download Assets Excel |
+        </a>
+
+        @if (Context.Session.GetString("Auth").Equals("madmin"))
+        {
+            <a asp-action="ExportReportsExcel" asp-controller="Exports" download>
+                Download Reports Excel |
+            </a>
+            <a asp-action="ExportUsersExcel" asp-controller="Exports" download>
+                Download Users Excel
+            </a>
+        }
+    </div>
+</body>
+</html>

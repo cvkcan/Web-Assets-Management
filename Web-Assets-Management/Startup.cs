@@ -1,3 +1,5 @@
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +25,21 @@ namespace Web_Assets_Management
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
+            //services.AddRazorPages();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+            {
+                option.LoginPath = "/Access/Login";
+                option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+            });
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "ValueOfAuth";
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturum zaman aşım süresi
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +52,6 @@ namespace Web_Assets_Management
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -45,13 +60,22 @@ namespace Web_Assets_Management
 
             app.UseRouting();
 
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapRazorPages();
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Access}/{action=Login}/{id?}");
+                
+                endpoints.MapFallbackToController("Handle", "Error");
+
             });
+
         }
+
     }
 }

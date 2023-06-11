@@ -1,15 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Categories";
-}
+﻿@model List<Categories>
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Laptops</a>
-    <a href="#">Towers</a>
-    <a href="#">Phones</a>
-    <a href="#">Monitors</a>
-    <a href="#">Others</a>
-</div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    @foreach (var item in Model)
+    {
+        <a href="/Home/StockBy?CategorieName=@item.CategorieName">@item.CategorieName</a>
+    }
 
-<div class="sidenav-static">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Categories</span>
-</div>
+    </div>
+
+    <div class="sidenav-static">
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Categories</span>
+    </div>
+
+

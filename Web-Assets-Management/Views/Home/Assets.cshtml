@@ -1,66 +1,66 @@
-﻿@{
-    ViewData["Title"] = "Assets";
-}
+﻿@model Assets
+
+<partial name="~/Views/Home/Partial/_ValidationPartial.cshtml">
+
 
 <div class="center-div">
     <div class="form-action">
-        <form asp-action="Assets" asp-controller="Home" method="post">
+        <h2>About Asset</h2>
+        <form  method="post">
+            <input type="number" min="1" asp-for="AssetsNumber" placeholder="Assets Number" onkeypress="return eventIsNumber(event)" /> <span asp-validation-for="AssetsNumber"></span>
             <br />
-            <input type="number" placeholder="Assets Number" />
+            <input type="text" asp-for="Name" placeholder="Assets Name" /> <span asp-validation-for="Name"></span>
             <br />
-            <input type="text" placeholder="Assets Name" />
+            <input type="number" min="1" asp-for="Price" placeholder="Price" /> <span asp-validation-for="Price"></span>
             <br />
-            <input type="number" placeholder="Quantity" />
-            <br />
-            <input type="number" placeholder="Price" />
-            <br />
-            <select>
-                <option value="" disabled selected hidden>Categories</option>
-                <option value="value">text</option>
-                <option value="value">text</option>
-                <option value="value">text</option>
+            <select asp-for="CategorieName">
+                <option disabled selected hidden>--- Select Categories ---</option>
+                @if (ViewBag.categorie != null)
+                {
+                    foreach (var item in ViewBag.categorie as List<Categories>)
+                    {
+                        <option>@item.CategorieName</option>
+                    }
+                }
             </select>
+            <span asp-validation-for="CategorieName"></span>
             <br />
-            <button>Add</button>
-            <button>Delete</button>
-            <button>Update</button>
+            <select asp-for="Vendor">
+                <option disabled selected hidden>--- Select Vendors ---</option>
+                @if (ViewBag.vendor != null)
+                {
+                    foreach (var item in ViewBag.vendor as List<Vendors>)
+                    {
+                        <option>@item.VendorName</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="Vendor"></span>
+            <br />
+            <button type="submit" asp-action="Assets" asp-controller="Home">Add Asset</button>
         </form>
-    </div>
+        @if (ViewBag.Error != null)
+        {
+            <h1 style="color:red">@ViewBag.Error</h1>
+        }
+        else
+        {
+            <h1 style="color:green">@ViewBag.Success</h1>
+        }
+        <hr style="width:75%;" />
+        <form method="post">
+            <h2>About Category</h2>
+            <input type="text" asp-for="CategorieName" placeholder="Categorie Name" onkeydown="return /[a-z ]/i.test(event.key)" /><span asp-validation-for="CategorieName"></span>
+            <br />
+            <button asp-action="Categorie" asp-controller="Home">Add Categorie</button>
+        </form>
+        @if (ViewBag.Error2 != null)
+        {
+            <h1 style="color:red">@ViewBag.Error2</h1>
+        }
+        else
+        {
+            <h1 style="color:green">@ViewBag.Success2</h1>
+        }
+    </div> 
 </div>
-
-
-<hr />
-
-<div class="center-div">
-    <div class="table-wrapper">
-        <table class="fl-table">
-            <thead>
-                <tr>
-                    <th>Header 1</th>
-                    <th>Header 2</th>
-                    <th>Header 3</th>
-                    <th>Header 4</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Content 1</td>
-                    <td>Content 1</td>
-                    <td>Content 1</td>
-                    <td>Content 1</td>
-
-                </tr>
-                <tr>
-                    <td>Content 2</td>
-                    <td>Content 2</td>
-                    <td>Content 2</td>
-                    <td>Content 2</td>
-
-                </tr>
-            <tbody>
-        </table>
-    </div>
-</div>
-
-
